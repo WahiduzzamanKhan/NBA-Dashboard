@@ -1,0 +1,15 @@
+#playerComparisonAttributes .btn-group button{
+    border: none;
+    background-color: white;
+    float: none;
+    box-shadow: none;
+    color: #428bca;
+}
+
+#teamComparisonAttributes .btn-group button{
+    border: none;
+    background-color: white;
+    float: none;
+    box-shadow: none;
+    color: #428bca;
+}
