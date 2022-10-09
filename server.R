@@ -71,7 +71,9 @@ server <- function(input, output, session){
 
     data <- left_join(t2, t1) %>%
       left_join(t3) %>%
-      mutate(MIN = difftime(MIN, parse_time('00:00:00'), units = 'mins')) %>%
+      separate(col = MIN, into = c("minute", "second"), sep = ":", remove = FALSE) %>%
+      mutate(minute = as.integer(minute), second = as.integer(minute)) %>%
+      mutate(MIN = round(as.numeric(duration(minute = minute, second = second))/60, 2)) %>%
       select(TEAM = NICKNAME, SEASON, everything(), -TEAM_ID, -GAME_ID) %>%
       filter(SEASON >= input$playerComparisonSeason[1] & SEASON <= input$playerComparisonSeason[2]) %>%
       filter(TEAM %in% input$playerComparisonTeam) %>%
